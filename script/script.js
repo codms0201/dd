@@ -1,35 +1,35 @@
-const wordList = document.getElementById('wordList');
+const words = [];
+
+function renderWordList() {
+  const wordList = document.getElementById('words');
+  wordList.innerHTML = '';
+
+  for (let i = 0; i < words.length; i++) {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      ${words[i]}
+      <button onclick="deleteWord(${i})">삭제</button>
+    `;
+    wordList.appendChild(listItem);
+  }
+}
 
 function addWord() {
-    const wordInput = document.getElementById('word');
-    const word = wordInput.value.trim();
+  const wordInput = document.getElementById('wordInput');
+  const word = wordInput.value.trim();
 
-    if (word !== '') {
-        const listItem = document.createElement('li');
-        listItem.textContent = word;
-        const editButton = createButton('Edit', () => editWord(listItem));
-        const deleteButton = createButton('Delete', () => deleteWord(listItem));
-        listItem.appendChild(editButton);
-        listItem.appendChild(deleteButton);
-        wordList.appendChild(listItem);
-        wordInput.value = '';
-    }
+  if (word !== '') {
+    words.push(word);
+    wordInput.value = '';
+    renderWordList();
+  }
 }
 
-function createButton(text, onClick) {
-    const button = document.createElement('button');
-    button.textContent = text;
-    button.addEventListener('click', onClick);
-    return button;
+function deleteWord(index) {
+  words.splice(index, 1);
+  renderWordList();
 }
 
-function editWord(listItem) {
-    const editedWord = prompt('Edit the word:', listItem.textContent);
-    if (editedWord !== null) {
-        listItem.textContent = editedWord;
-    }
-}
-
-function deleteWord(listItem) {
-    listItem.remove();
-}
+document.addEventListener('DOMContentLoaded', () => {
+  renderWordList();
+});
