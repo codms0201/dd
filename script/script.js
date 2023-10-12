@@ -6,14 +6,13 @@ function validateForm() {
     let meaning = document.getElementById("meaning").value;
 
     if (!level || !word || !meaning) {
-        console.log("모든 필드를 채워주세요.");
-        return;
+        alert("모든 필드를 채워주세요.");
+        return false;
     }
 
     let newWord = { level: level, word: word, meaning: meaning };
     wordList.push(newWord);
-
-    console.log("새 단어가 단어장에 추가되었습니다.");
+    alert("새 단어가 단어장에 추가되었습니다.");
 }
 
 // Rest of the functions (editWord, deleteWord, displayAllWords) remain unchanged.
