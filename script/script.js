@@ -13,6 +13,8 @@ function validateForm() {
     let newWord = { level: level, word: word, meaning: meaning };
     wordList.push(newWord);
     alert("새 단어가 단어장에 추가되었습니다.");
+
+    return true;
 }
 
 // Rest of the functions (editWord, deleteWord, displayAllWords) remain unchanged.
