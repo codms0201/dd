@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Add Word</h1>
-    <form name="level" action="/action_page.php" onsubmit="return validateForm(event)" method="post">
+    <form name="level" action="/action_page.php" onsubmit="return validateForm()" method="post">
         <label for="level">난이도(1, 2, 3): </label>
         <input type="number" id="level" required><br><br>
 
@@ -45,13 +45,10 @@
             // Display the updated word list
             displayAllWords();
 
-            // Redirect to index.html
-            window.location.href = "index.html";
-
             return true;
         }
     </script>
+    <button onclick="location.href='index.html'">Home</button>
 </body>
 </html>
-
 
