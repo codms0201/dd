@@ -17,6 +17,13 @@
         function editSelectedWord() {
             let keyword = prompt("수정할 단어를 입력하세요:");
 
+            if (keyword === null) {
+                // 사용자가 취소 버튼을 누르면 아무것도 하지 않음
+                return;
+            }
+
+            keyword = keyword.trim(); // 키워드 양쪽의 공백을 제거
+
             if (!validateInput(keyword)) {
                 alert("유효하지 않은 키워드입니다.");
                 return;
@@ -40,14 +47,28 @@
                 options += `${i + 1}. ${matchingWords[i].word.word}\n`;
             }
 
-            let selectedWordIndex = prompt(options) - 1;
+            let selectedWordIndex = prompt(options);
 
-            if (selectedWordIndex < 0 || selectedWordIndex >= matchingWords.length) {
+            if (selectedWordIndex === null) {
+                // 사용자가 취소 버튼을 누르면 아무것도 하지 않음
+                return;
+            }
+
+            selectedWordIndex = parseInt(selectedWordIndex) - 1;
+
+            if (isNaN(selectedWordIndex) || selectedWordIndex < 0 || selectedWordIndex >= matchingWords.length) {
                 alert("올바르지 않은 번호입니다.");
                 return;
             }
 
             let newMeaning = prompt("새로운 뜻을 입력하세요:");
+
+            if (newMeaning === null) {
+                // 사용자가 취소 버튼을 누르면 아무것도 하지 않음
+                return;
+            }
+
+            newMeaning = newMeaning.trim(); // 뜻 양쪽의 공백을 제거
 
             if (!validateInput(newMeaning)) {
                 alert("유효하지 않은 뜻입니다.");
@@ -62,5 +83,3 @@
     </script>
 </body>
 </html>
-
-
