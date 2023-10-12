@@ -70,7 +70,27 @@ function editWord() {
     console.log("단어가 수정되었습니다.");
 }
 
+function deleteWord() {
+    let keyword = prompt("삭제할 단어를 입력하세요:");
+
+    for (let i = 0; i < wordList.length; i++) {
+        if (wordList[i].word.includes(keyword)) {
+            wordList.splice(i, 1);
+            console.log("단어가 삭제되었습니다.");
+            return;
+        }
+    }
+
+    console.log("일치하는 단어를 찾을 수 없습니다.");
+}
+
+function displayAllWords() {
+    console.log("전체 단어 목록:");
+    for (let i = 0; i < wordList.length; i++) {
+        console.log(i + 1, "-", wordList[i].level, wordList[i].word, wordList[i].meaning);
+    }
+}
+
 // 예시로 단어 목록을 초기화합니다.
 wordList.push({ level: 1, word: "Apple", meaning: "A fruit" });
 wordList.push({ level: 2, word: "Banana", meaning: "A yellow fruit" });
-
