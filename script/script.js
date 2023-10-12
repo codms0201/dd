@@ -1,10 +1,6 @@
 let wordList = [];
 
 function addWord() {
-    let level = prompt("난이도(1, 2, 3)를 입력하세요:");
-    let word = prompt("새 단어를 입력하세요:");
-    let meaning = prompt("뜻을 입력하세요:");
-
     let newWord = { level: level, word: word, meaning: meaning };
     wordList.push(newWord);
 
