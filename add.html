@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Add Word</h1>
-    <form name="level" action="/action_page.php" onsubmit="return validateForm()" method="post">
+    <form name="level" onsubmit="return validateForm(event)">
         <label for="level">난이도(1, 2, 3): </label>
         <input type="number" id="level" required><br><br>
 
@@ -23,11 +23,11 @@
         <button type="submit">Add Word</button>
     </form>
 
+    <button onclick="location.href='index.html'">Home</button>
+
     <script>
-        // Modify the function to handle form submission and word addition
-        function validateForm() {
-            // Prevent the default form submission
-            event.preventDefault();
+        function validateForm(event) {
+            event.preventDefault(); // Prevent the default form submission
 
             let level = document.getElementById("level").value;
             let word = document.getElementById("word").value;
@@ -46,6 +46,5 @@
             return true;
         }
     </script>
-    <button onclick="location.href='index.html'">Home</button>
 </body>
 </html>
