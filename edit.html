@@ -44,7 +44,7 @@
 
             let options = "일치하는 단어를 선택하세요:\n";
             for (let i = 0; i < matchingWords.length; i++) {
-                options += `${i + 1}. ${matchingWords[i].word.word}\n`;
+                options += `${i + 1}. ${matchingWords[i].word.word} - ${matchingWords[i].word.meaning}\n`;
             }
 
             let selectedWordIndex = prompt(options);
@@ -64,7 +64,7 @@
             let newMeaning = prompt("새로운 뜻을 입력하세요:");
 
             if (newMeaning === null) {
-                // 사용자가 취소 버튼을 누르면 아무것도 하지 않음
+                // 사용자가 취소 버튼을 누를 경우 아무것도 하지 않음
                 return;
             }
 
