@@ -11,6 +11,8 @@
     <h1>Edit Word</h1>
     <button onclick="editSelectedWord()">Edit Word</button>
 
+    <div id="wordList"></div>
+
     <script>
         function editSelectedWord() {
             let keyword = prompt("수정할 단어를 입력하세요:");
@@ -55,8 +57,10 @@
             wordList[matchingWords[selectedWordIndex].index].meaning = newMeaning;
 
             alert("단어가 수정되었습니다.");
+            displayAllWords(); // 수정 후 단어 목록을 갱신해서 보여줍니다.
         }
     </script>
 </body>
 </html>
+
 
