@@ -5,31 +5,32 @@ function validateInput(input) {
 }
 
 function validateForm(event) {
-    event.preventDefault(); // 폼 제출 기본 동작 중지
+    event.preventDefault(); // Prevent the default form submission behavior
 
     let level = document.getElementById("level").value;
     let word = document.getElementById("word").value;
     let meaning = document.getElementById("meaning").value;
 
     if (!validateInput(level) || !validateInput(word) || !validateInput(meaning)) {
-        alert("모든 필드를 채워주세요.");
+        alert("Please fill in all fields.");
         return false;
     }
 
-    // 새 단어 추가
+    // Add the new word to the word list
     let newWord = { level: level, word: word, meaning: meaning };
     wordList.push(newWord);
 
-    // 단어 목록 표시
+    // Display an alert after adding the word
+    alert("The word has been added!");
+
+    // Display the updated word list
     displayAllWords();
 
-    alert("새 단어가 단어장에 추가되었습니다.");
     return true;
 }
 
 function displayAllWords() {
     let wordListDiv = document.getElementById("wordList");
-    wordListDiv.innerHTML = ''; // 기존 내용 초기화
 
     for (let i = 0; i < wordList.length; i++) {
         let wordItem = document.createElement('div');
