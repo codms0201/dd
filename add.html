@@ -1,34 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Word</title>
-    <script src="script.js"></script>
+  <title>My Voca</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+    function addWord(){
+        var level = document.getElementById('level').value;
+        var word = document.getElementById('word').value;
+        var meaning = document.getElementById('meaning').value;
+
+        //제대로 입력하지 않았다면,
+        if (word.trim() === '' || meaning.trim() === ''){
+            alert('Write all the things.');
+            return;
+        }
+        var n_word = {level : level, word : word, meaning : meaning};
+        alert('Added.');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('home-link').classList.remove('active');
+            document.getElementById('add-link').classList.add('active');
+            document.getElementById('view-link').classList.remove('active');
+            document.getElementById('edit-link').classList.remove('active');
+        });
+    }
+  </script>
 </head>
 <body>
-    <h1>Add Word</h1>
-    <form name="level" onsubmit="return validateForm(event)">
-        <label for="level">난이도(1, 2, 3): </label>
-        <input type="number" id="level" required><br><br>
-
-        <label for="word">새 단어: </label>
-        <input type="text" id="word" required><br><br>
-
-        <label for="meaning">뜻: </label>
-        <input type="text" id="meaning" required><br><br>
-
-        <button type="submit">Add Word</button>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">My Voca</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Quiz</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+      </ul>
+    </div>
+  </div>
+</nav>
+<fieldset>
+    <legend>Add Word</legend>
+    <form name="form" action="index.html" id="addWord" method="post" >
+        <div class="form-group">
+            <label for="word">Word </label>
+            <input type="text" class="form-control" id="word" required>
+        </div>
+        <div class="form-group">
+            <label for="meaning">Meaning </label>
+            <input type="text" class="form-control" id="meaning" required>
+        </div>
+        <div class="form-group">
+            <label for="ability">Choose Level </label>
+            <select id="level" name="level">
+                <option value="Level 1">Level 1</option>
+                <option value="Level 2">Level 2</option>
+                <option value="Level 3">Level 3</option>
+            </select>
+        </div>
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+    </div>
+    <div class="col-sm-8 text-left"> 
+    
+    
+    <div class="col-sm-2 sidenav">
+      <button type="submit" onclick="addWord()">add</button>
+    </div>
     </form>
+</fieldset>
+  </div>
+</div>
 
-    <button onclick="location.href='index.html'">Home</button>
+  <footer class="container-fluid text-center">
+    <p>"The best way to memorize is seeing frequently."</p>
+  </footer>
 
-    <div id="wordList"></div>
-
-    <script>
-        // 페이지가 로드될 때 호출하여 저장된 단어를 표시
-        displayAllWords();
-    </script>
 </body>
 </html>

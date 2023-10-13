@@ -1,85 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
-    <title>Edit Word</title>
+  <title>My Voca</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('home-link').classList.remove('active');
+            document.getElementById('add-link').classList.add('active');
+            document.getElementById('view-link').classList.remove('active');
+            document.getElementById('edit-link').classList.remove('active');
+            bringForm();
+        });
+        function editWord() {
+              // Get the values from the form
+              var word = document.getElementById('word').value;
+              var meaning = document.getElementById('meaning').value;
+              var level = document.getElementById('level').value;
+              var importance = document.querySelector('input[name="importance"]:checked').value;
+
+              if (word.trim() === '' || meaning.trim() === '') {
+                  alert('입력이 되지 않았습니다. 다시 입력해주세요! ');
+                  return;
+              }
+              alert('Word edited successfully!');
+              // Encode values for URL
+              var encodedWord = encodeURIComponent(word);
+              var encodedMeaning = encodeURIComponent(meaning);
+              var encodedLevel = encodeURIComponent(level);
+              var encodedImportance = encodeURIComponent(importance);
+              window.location.href = "view.html?word=" + encodedWord + "&meaning=" + encodedMeaning + "&level=" + encodedLevel + "&importance=" + encodedImportance;
+          }
+  </script>
 </head>
 <body>
-    <h1>Edit Word</h1>
-    <button onclick="editSelectedWord()">Edit Word</button>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">My Voca</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Quiz</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+      </ul>
+    </div>
+  </div>
+</nav>
+<fieldset>
+    <legend>Edit Word</legend>
+    <form name="form" action="index.html" id="addWord" method="post" >
+        <div class="form-group">
+            <label for="word">Word </label>
+            <input type="text" class="form-control" id="word" required>
+        </div>
+        <div class="form-group">
+            <label for="meaning">Meaning </label>
+            <input type="text" class="form-control" id="meaning" required>
+        </div>
+        <div class="form-group">
+            <label for="ability">Choose Level </label>
+            <select id="level" name="level">
+                <option value="Level 1">Level 1</option>
+                <option value="Level 2">Level 2</option>
+                <option value="Level 3">Level 3</option>
+            </select>
+        </div>
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+    </div>
+    <div class="col-sm-8 text-left"> 
+    
+    
+    <div class="col-sm-2 sidenav">
+      <button type="submit" onclick="editWord()">add</button>
+    </div>
+    </form>
+</fieldset>
+  </div>
+</div>
 
-    <div id="wordList"></div>
+  <footer class="container-fluid text-center">
+    <p>"The best way to memorize is seeing frequently."</p>
+  </footer>
 
-    <script>
-        function editSelectedWord() {
-            let keyword = prompt("수정할 단어를 입력하세요:");
-
-            if (keyword === null) {
-                // 사용자가 취소 버튼을 누르면 아무것도 하지 않음
-                return;
-            }
-
-            keyword = keyword.trim(); // 키워드 양쪽의 공백을 제거
-
-            if (!validateInput(keyword)) {
-                alert("유효하지 않은 키워드입니다.");
-                return;
-            }
-
-            let matchingWords = [];
-
-            for (let i = 0; i < wordList.length; i++) {
-                if (wordList[i].word.includes(keyword)) {
-                    matchingWords.push({ index: i, word: wordList[i] });
-                }
-            }
-
-            if (matchingWords.length === 0) {
-                alert("일치하는 단어를 찾을 수 없습니다.");
-                return;
-            }
-
-            let options = "일치하는 단어를 선택하세요:\n";
-            for (let i = 0; i < matchingWords.length; i++) {
-                options += `${i + 1}. ${matchingWords[i].word.word} - ${matchingWords[i].word.meaning}\n`;
-            }
-
-            let selectedWordIndex = prompt(options);
-
-            if (selectedWordIndex === null) {
-                // 사용자가 취소 버튼을 누르면 아무것도 하지 않음
-                return;
-            }
-
-            selectedWordIndex = parseInt(selectedWordIndex) - 1;
-
-            if (isNaN(selectedWordIndex) || selectedWordIndex < 0 || selectedWordIndex >= matchingWords.length) {
-                alert("올바르지 않은 번호입니다.");
-                return;
-            }
-
-            let newMeaning = prompt("새로운 뜻을 입력하세요:");
-
-            if (newMeaning === null) {
-                // 사용자가 취소 버튼을 누를 경우 아무것도 하지 않음
-                return;
-            }
-
-            newMeaning = newMeaning.trim(); // 뜻 양쪽의 공백을 제거
-
-            if (!validateInput(newMeaning)) {
-                alert("유효하지 않은 뜻입니다.");
-                return;
-            }
-
-            wordList[matchingWords[selectedWordIndex].index].meaning = newMeaning;
-
-            alert("단어가 수정되었습니다.");
-            displayAllWords(); // 수정 후 단어 목록을 갱신해서 보여줍니다.
-        }
-    </script>
 </body>
 </html>

@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Voca</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).on("click", ".delete", function(){
+        if (confirm("정말 삭제하시겠습니까??") == true){    
+            //document.removefrm.submit();
+            $(this).parents("tr").remove();
+            $(".add-new").removeAttr("disabled");
+        }else{   //취소
+            return false;
+        }
+      });
 
+      $(document).on("click", ".edit", function(){
+        if (confirm("정말 수정하시겠습니까??") == true){    
+          var editLink = "edit.html?word=apple&meaning=사과&level=Level%201";
+          window.location.href = editLink;
+        }else{   //취소
+            return false;
+        }
+      });
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">My Voca</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Quiz</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <h2>선택한 영단어</h2>   
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Word</th>
+            <th>Meaning</th>
+            <th>Level</th>
+            <th>Date</th>
+            <th>Menu</th>
+            <th>중요도</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td>1</td>
+              <td>apple</td>
+              <td>사과</td>
+              <td>Level 1</td>
+              <td>2023-10-07</td>
+              <td>Low</td>
+              <td>
+                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">edit</i></a>
+                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">delete</i></a>
+              </td>
+          </tr>
+      </table>
+    </div>
+  </div>
+
+  <footer class="container-fluid text-center">
+    <p>"The best way to memorize is seeing frequently."</p>
+  </footer>
+
+</body>
+</html>
